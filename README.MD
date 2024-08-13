@@ -1,6 +1,6 @@
 ## **Job Board Platform ( Candidates Portal )** 
 
-- The project is about to create a job board platform (candidates portal) by using
+The project is about to create a job board platform (candidates portal) by using
 
 - Front-end: Reactjs
 - Back-end: Nodejs

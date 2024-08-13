@@ -5,14 +5,13 @@ const { SECRET_KEY } = require("../utils/config");
 const BasicInfo = require("../models/basicInfo");
 const ProfessionalInfo = require("../models/professional_Info");
 const nodemailer = require('nodemailer');
-const { request, response } = require("express");
 
 
 const userController = {
 
 register: async (request, response) => {
     try {
-        const { fname, lname, email, password } = request.body;
+        const { fname, lname, email, password, role } = request.body;
 
         // Check if user already exists
         const existingUser = await User.findOne({ email });
@@ -24,7 +23,7 @@ register: async (request, response) => {
         const hashPassword = await bcrypt.hash(password, 10);
 
         // Create a new user
-        const newUser = new User({ fname, lname, email, password: hashPassword });
+        const newUser = new User({ fname, lname, email, password: hashPassword, role });
 
         // Save the new user
         const savedUser = await newUser.save();

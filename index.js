@@ -11,7 +11,7 @@ mongoose.connect(MONGODB_URI)
     console.log('Connected to MongoDB');
 
     app.listen(PORT, () => {
-        console.log(`Server is running on https://job-board-platform-backend-hw9v.onrender.com`)
+        console.log(`Server is running on http://localhost:${PORT}`)
     })
 })
 .catch((error) => {

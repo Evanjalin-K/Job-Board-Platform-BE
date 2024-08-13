@@ -97,6 +97,19 @@ The user can register by entering their first name, last name, email, and passwo
 
 - The admin can also delete the job that she or he has created.
 
+#### Packages Used:
+
+- bcrypt
+- cookie-parser
+- cors
+- dotenv
+- express
+- jsonwebtoken
+- mongoose
+- morgan
+- multer
+- nodemailer
+- nodemon
 
 
 

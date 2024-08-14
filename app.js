@@ -8,7 +8,7 @@ const companyRouter = require('./routes/companyRouter');
 const app = express();
 
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:3000', 'https://job-board-platform-backend-hw9v.onrender.com', 'https://job-board-platform-frontend.netlify.app'],
+    origin: ['http://localhost:5173', 'http://localhost:3000', 'https://job-board-platform-frontend.netlify.app'],
     credentials: true,
 }))
 app.use('/uploads', express.static('uploads'));

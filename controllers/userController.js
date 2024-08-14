@@ -252,7 +252,6 @@ updateProfessionalInfo: async (request, response) => {
         response.cookie('token', token, {
             httpOnly: true,
             secure: true,
-            SameSite:"none",
             expires: new Date(Date.now() + 24 * 3600000)
         });
         response.status(200).json({message: 'Login Successfull'})

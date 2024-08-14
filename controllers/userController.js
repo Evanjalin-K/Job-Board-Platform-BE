@@ -273,6 +273,9 @@ updateProfessionalInfo: async (request, response) => {
        try {
 
         const userId = request.userId;
+        
+        console.log("UserId", userId);
+        
 
         const user = await User.findById(userId).select('-password -__v ');
         

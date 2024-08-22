@@ -19,7 +19,12 @@ const auth = {
            //verify the token
            try {
             
-            const decodedToken = jwt.verify( token, SECRET_KEY );
+            const decodedToken = jwt.verify( token, SECRET_KEY,(err, decodedToken) => {
+                if (err) {
+                    console.error('Token verification failed:', err.message);
+                    return response.status(401).json({ message: 'Invalid token' });
+                }
+            })
 
             console.log('Decode', decodedToken);
 

@@ -35,7 +35,7 @@ register: async (request, response) => {
         response.cookie('token', token, {
             httpOnly: true,
             secure: true,
-            sameSite: 'None', 
+            sameSite:'None', 
             expires: new Date(Date.now() + 24 * 3600000) // 1 day
         });
 
@@ -93,24 +93,20 @@ updateBasicInfo: async (request, response) => {
       basicInfo = new BasicInfo({ user: userId });
     }
 
-    // Update the fields if they are provided
     if (phone) {
-      // Optional: Add a check here for phone number format if needed
       basicInfo.phone = phone;
     }
     if (city) {
-      // Add a check here for city format if needed
       basicInfo.city = city;
     }
     if (state) {
       basicInfo.state = state;
     }
     if (country) {
-      // Add a check here for country format if needed
+
       basicInfo.country = country;
     }
 
-    // Save the updated BasicInfo document
     const updatedBasicInfo = await basicInfo.save();
     console.log('Updated BasicInfo:', updatedBasicInfo);
 
@@ -180,8 +176,7 @@ professionalInfo: async (request, response) => {
 },
 getProfessionalInfo: async (request, response) => {
   try {
-    const userId = request.userId; // Assume userId is set by authentication middleware
-
+    const userId = request.userId; 
     if (!userId) {
       return response.status(400).json({ message: 'User ID is required' });
     }
@@ -213,7 +208,7 @@ updateProfessionalInfo: async (request, response) => {
     const updatedProfessionalInfo = await ProfessionalInfo.findOneAndUpdate(
       { user: userId },
       updateData,
-      { new: true, runValidators: true } // Return the updated document and run validators
+      { new: true, runValidators: true }
     );
 
     if (!updatedProfessionalInfo) {
@@ -252,6 +247,7 @@ updateProfessionalInfo: async (request, response) => {
         response.cookie('token', token, {
             httpOnly: true,
             secure: true,
+            sameSite: 'None', 
             expires: new Date(Date.now() + 24 * 3600000)
         });
         response.status(200).json({message: 'Login Successfull'})
@@ -260,20 +256,27 @@ updateProfessionalInfo: async (request, response) => {
     
     }
   },
-  logout: async (request, response) =>{
+  logout: async (request, response) => {
     try {
-      response.clearCookie('token')
+        // Clear the token cookie 
+        response.clearCookie('token', {
+            httpOnly: true,
+            secure: true, 
+            sameSite: 'None', 
+        });
 
-      response.status(200).json({message: 'Logged out successfully'})
+        response.status(200).json({ message: 'Logged out successfully' });
     } catch (error) {
-      response.status(500).json({message:error.message})
+        console.error('Logout Error:', error.message);
+
+        response.status(500).json({ message: 'Internal server error' });
     }
   },
   getProfile: async (request, response) => {
        try {
 
         const userId = request.userId;
-        
+
         console.log("UserId", userId);
         
 
